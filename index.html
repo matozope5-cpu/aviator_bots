@@ -294,7 +294,7 @@
     /* Sophisticated "GET NOW" button - cool blue that complements orange */
     .buy-btn {
       background: transparent;
-      border: 2px solid #4A9EFF;  /* Cool blue that complements orange */
+      border: 2px solid #4A9EFF;
       padding: 8px 18px;
       border-radius: 40px;
       font-weight: 600;
@@ -332,25 +332,31 @@
       padding-top: 16px;
     }
 
-    /* ----- SWEET ALERT CUSTOM - INTEGRATED FROM WORKING WEBPAGE ----- */
+    /* ----- SWEET ALERT CUSTOM - WITH FIXED PHONE PREFIX FOR NARROW SCREENS ----- */
     .swal2-popup {
       background: #131F2F !important;
       color: #edf2f7 !important;
       border: 1px solid #3A4A62 !important;
       border-radius: 24px !important;
       font-family: 'Inter', sans-serif !important;
+      width: 92% !important;
+      max-width: 460px !important;
+      margin: 0 auto !important;
     }
 
     .swal2-title {
       color: #ffffff !important;
       font-family: 'Space Grotesk', sans-serif !important;
+      font-size: 1.4rem !important;
     }
 
     .swal2-html-container {
       color: #d2e0f0 !important;
+      margin: 5px 0 0 !important;
+      padding: 0 5px !important;
     }
 
-    .swal2-input, .swal2-textarea {
+    .swal2-input {
       background: #0F1A26 !important;
       border: 1px solid #3A4A62 !important;
       border-radius: 14px !important;
@@ -360,48 +366,10 @@
       padding: 12px 16px !important;
       width: 100% !important;
       margin: 8px 0 !important;
+      box-sizing: border-box !important;
     }
 
-    .swal2-input:focus, .swal2-textarea:focus {
-      border-color: #FF9F1C !important;
-      box-shadow: 0 0 0 2px rgba(255, 159, 28, 0.2) !important;
-      outline: none !important;
-    }
-
-    .swal2-confirm {
-      background: #FF9F1C !important;
-      color: #0B0F17 !important;
-      border: none !important;
-      border-radius: 40px !important;
-      font-weight: 600 !important;
-      padding: 12px 24px !important;
-      font-size: 1rem !important;
-      box-shadow: 0 4px 0 #b15f00 !important;
-    }
-
-    .swal2-cancel {
-      background: transparent !important;
-      color: #aac5e5 !important;
-      border: 1px solid #3A4A62 !important;
-      border-radius: 40px !important;
-      font-weight: 500 !important;
-      padding: 12px 24px !important;
-      font-size: 1rem !important;
-    }
-
-    .swal2-confirm:hover {
-      background: #ffb347 !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 0 #b15f00, 0 8px 20px rgba(255, 159, 28, 0.4) !important;
-    }
-
-    .swal2-cancel:hover {
-      border-color: #FF9F1C !important;
-      color: #ffffff !important;
-      background: rgba(255, 159, 28, 0.1) !important;
-    }
-
-    /* Phone input group - from working webpage */
+    /* FIXED PHONE INPUT GROUP - Prevents +254 from breaking */
     .phone-input-group {
       display: flex;
       align-items: center;
@@ -411,10 +379,12 @@
       margin: 8px 0;
       overflow: hidden;
       height: 48px;
+      width: 100%;
+      min-width: 0; /* Allows flex children to shrink properly */
     }
 
     .phone-prefix {
-      padding: 0 14px;
+      padding: 0 10px;
       color: #FF9F1C;
       font-size: 1rem;
       background: #1C2B3E;
@@ -423,23 +393,48 @@
       align-items: center;
       justify-content: center;
       border-right: 1px solid #3A4A62;
-      font-weight: 500;
+      font-weight: 600;
+      white-space: nowrap; /* CRITICAL: Prevents text wrapping */
+      flex-shrink: 0; /* Prevents the prefix from shrinking */
+      min-width: 55px; /* Gives +254 enough space */
+      text-align: center;
+      line-height: 1;
     }
 
     .phone-input-group input {
-      flex: 1;
+      flex: 1 1 auto; /* Allows input to take remaining space */
       background: transparent !important;
       border: none !important;
-      padding: 0 16px !important;
+      padding: 0 12px !important;
       margin: 0 !important;
       color: #ffffff !important;
       font-size: 16px !important;
       height: 100%;
+      min-width: 120px; /* Ensures input doesn't get too small */
+      width: auto;
     }
 
     .phone-input-group input:focus {
       outline: none !important;
       box-shadow: none !important;
+    }
+
+    /* Extra small screen optimization */
+    @media (max-width: 360px) {
+      .phone-prefix {
+        padding: 0 8px;
+        font-size: 0.9rem;
+        min-width: 50px;
+      }
+      
+      .phone-input-group input {
+        padding: 0 8px !important;
+        font-size: 15px !important;
+      }
+      
+      .swal2-popup {
+        padding: 15px 12px !important;
+      }
     }
 
     /* Summary box */
@@ -489,6 +484,7 @@
       font-weight: 600;
       color: #FF9F1C;
       border: 1px solid #3A4A62;
+      word-break: break-all;
     }
 
     .swal2-loader {
@@ -525,6 +521,12 @@
       justify-content: center;
       color: #FF9F1C;
       font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .info-text {
+      flex: 1;
+      min-width: 0; /* Allows text to wrap if needed */
     }
 
     .info-text .title {
@@ -550,6 +552,7 @@
       color: #FF9F1C;
       border: 1px dashed #FF9F1C40;
       margin: 12px 0 6px;
+      flex-wrap: wrap;
     }
 
     /* Floating animation - subtle */
@@ -609,8 +612,8 @@
           <div class="bullet-text"><strong>5 advanced tiers</strong> — 82% to 97% accuracy</div>
         </div>
         <div class="bullet-item">
-          <div class="bullet-icon"><i class="fas fa-shield-alt"></i></div>
-          <div class="bullet-text"><strong>Bank‑grade security</strong> — encrypted, instant M‑Pesa</div>
+          <div class="bullet-icon"><i class="fas fa-globe"></i></div>
+          <div class="bullet-text"><strong>Universal compatibility</strong> — works on all Aviator platforms</div>
         </div>
         <div class="bullet-item">
           <div class="bullet-icon"><i class="fas fa-trophy"></i></div>
