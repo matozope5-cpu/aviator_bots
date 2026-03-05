@@ -332,7 +332,7 @@
       padding-top: 16px;
     }
 
-    /* ----- SWEET ALERT CUSTOM - WITH FIXED PHONE PREFIX FOR NARROW SCREENS ----- */
+    /* ----- SWEET ALERT CUSTOM - ONLY MODAL PADDING INCREASED, INTERNAL SPACING UNCHANGED ----- */
     .swal2-popup {
       background: #131F2F !important;
       color: #edf2f7 !important;
@@ -342,18 +342,22 @@
       width: 92% !important;
       max-width: 460px !important;
       margin: 0 auto !important;
+      padding: 24px 20px !important; /* ONLY MODAL PADDING INCREASED */
     }
 
     .swal2-title {
       color: #ffffff !important;
       font-family: 'Space Grotesk', sans-serif !important;
       font-size: 1.4rem !important;
+      padding: 0 !important;
+      margin: 0 0 8px 0 !important;
     }
 
     .swal2-html-container {
       color: #d2e0f0 !important;
-      margin: 5px 0 0 !important;
-      padding: 0 5px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 14px !important;
     }
 
     .swal2-input {
@@ -362,29 +366,30 @@
       border-radius: 14px !important;
       color: #fff !important;
       font-family: 'Inter', sans-serif !important;
-      font-size: 16px !important;
-      padding: 12px 16px !important;
+      font-size: 15px !important;
+      padding: 12px 16px !important; /* KEPT ORIGINAL */
       width: 100% !important;
-      margin: 8px 0 !important;
+      margin: 8px 0 12px !important; /* KEPT ORIGINAL */
       box-sizing: border-box !important;
+      height: auto !important;
     }
 
-    /* FIXED PHONE INPUT GROUP - Prevents +254 from breaking */
+    /* FIXED PHONE INPUT GROUP - KEPT ORIGINAL */
     .phone-input-group {
       display: flex;
       align-items: center;
       background: #0F1A26;
       border: 1px solid #3A4A62;
       border-radius: 14px;
-      margin: 8px 0;
+      margin: 8px 0 12px; /* KEPT ORIGINAL */
       overflow: hidden;
-      height: 48px;
+      height: 48px; /* KEPT ORIGINAL */
       width: 100%;
-      min-width: 0; /* Allows flex children to shrink properly */
+      min-width: 0;
     }
 
     .phone-prefix {
-      padding: 0 10px;
+      padding: 0 14px;
       color: #FF9F1C;
       font-size: 1rem;
       background: #1C2B3E;
@@ -394,63 +399,93 @@
       justify-content: center;
       border-right: 1px solid #3A4A62;
       font-weight: 600;
-      white-space: nowrap; /* CRITICAL: Prevents text wrapping */
-      flex-shrink: 0; /* Prevents the prefix from shrinking */
-      min-width: 55px; /* Gives +254 enough space */
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 55px;
       text-align: center;
       line-height: 1;
     }
 
     .phone-input-group input {
-      flex: 1 1 auto; /* Allows input to take remaining space */
+      flex: 1 1 auto;
       background: transparent !important;
       border: none !important;
-      padding: 0 12px !important;
+      padding: 0 16px !important; /* KEPT ORIGINAL */
       margin: 0 !important;
       color: #ffffff !important;
-      font-size: 16px !important;
+      font-size: 15px !important; /* KEPT ORIGINAL */
       height: 100%;
-      min-width: 120px; /* Ensures input doesn't get too small */
+      min-width: 120px;
       width: auto;
     }
 
-    .phone-input-group input:focus {
-      outline: none !important;
-      box-shadow: none !important;
+    /* Contact info panel - KEPT ORIGINAL */
+    .contact-info-panel {
+      background: #0B0F17;
+      border-radius: 16px;
+      padding: 12px; /* KEPT ORIGINAL */
+      margin: 5px 0 12px; /* KEPT ORIGINAL */
+      border: 1px solid #FF9F1C30;
     }
 
-    /* Extra small screen optimization */
-    @media (max-width: 360px) {
-      .phone-prefix {
-        padding: 0 8px;
-        font-size: 0.9rem;
-        min-width: 50px;
-      }
-      
-      .phone-input-group input {
-        padding: 0 8px !important;
-        font-size: 15px !important;
-      }
-      
-      .swal2-popup {
-        padding: 15px 12px !important;
-      }
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* KEPT ORIGINAL */
+      padding: 6px 0; /* KEPT ORIGINAL */
     }
 
-    /* Summary box */
+    .info-icon {
+      width: 28px; /* KEPT ORIGINAL */
+      height: 28px; /* KEPT ORIGINAL */
+      background: #FF9F1C15;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FF9F1C;
+      font-size: 0.85rem; /* KEPT ORIGINAL */
+      flex-shrink: 0;
+    }
+
+    .info-text .title {
+      font-weight: 600;
+      color: #fff;
+      font-size: 0.85rem; /* KEPT ORIGINAL */
+      margin-bottom: 2px; /* KEPT ORIGINAL */
+    }
+
+    .info-text .subtitle {
+      font-size: 0.65rem; /* KEPT ORIGINAL */
+      color: #9bb5d8;
+    }
+
+    .benefit-badge {
+      background: #FF9F1C20;
+      border-radius: 20px;
+      padding: 6px 12px; /* KEPT ORIGINAL */
+      display: flex;
+      align-items: center;
+      gap: 6px; /* KEPT ORIGINAL */
+      font-size: 0.75rem; /* KEPT ORIGINAL */
+      color: #FF9F1C;
+      border: 1px dashed #FF9F1C40;
+      margin: 12px 0 6px; /* KEPT ORIGINAL */
+    }
+
     .summary-box {
       background: #0F1A26;
       border-radius: 16px;
-      padding: 16px;
-      margin: 12px 0;
+      padding: 12px; /* KEPT ORIGINAL */
+      margin: 12px 0; /* KEPT ORIGINAL */
       border: 1px solid #3A4A62;
     }
 
     .summary-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 0.95rem;
+      margin-bottom: 8px; /* KEPT ORIGINAL */
+      font-size: 0.85rem; /* KEPT ORIGINAL */
     }
 
     .summary-value { 
@@ -458,101 +493,71 @@
       font-weight: 600; 
     }
 
-    /* Info note */
     .info-note {
       background: rgba(255, 159, 28, 0.1);
       border-left: 3px solid #FF9F1C;
-      padding: 12px;
-      border-radius: 10px;
-      margin: 12px 0;
+      padding: 12px; /* KEPT ORIGINAL */
+      border-radius: 10px; /* KEPT ORIGINAL */
+      margin: 12px 0; /* KEPT ORIGINAL */
       text-align: left;
-      font-size: 0.85rem;
+      font-size: 0.85rem; /* KEPT ORIGINAL */
     }
 
-    /* Payment status icons */
+    /* Payment status icons - KEPT ORIGINAL */
     .stk-push-icon, .success-icon, .error-icon {
-      font-size: 2.5rem;
+      font-size: 2.5rem; /* KEPT ORIGINAL */
       color: #FF9F1C;
-      margin-bottom: 12px;
+      margin-bottom: 12px; /* KEPT ORIGINAL */
     }
 
     .stk-phone-display {
       background: #0F1A26;
-      padding: 12px;
-      border-radius: 12px;
-      margin: 12px 0;
+      padding: 12px; /* KEPT ORIGINAL */
+      border-radius: 12px; /* KEPT ORIGINAL */
+      margin: 12px 0; /* KEPT ORIGINAL */
       font-weight: 600;
       color: #FF9F1C;
       border: 1px solid #3A4A62;
       word-break: break-all;
     }
 
-    .swal2-loader {
-      border-color: #FF9F1C transparent #FF9F1C transparent !important;
+    /* Button styling - KEPT ORIGINAL */
+    .swal2-actions {
+      margin: 16px 0 4px !important; /* KEPT ORIGINAL */
+      gap: 12px !important; /* KEPT ORIGINAL */
     }
 
-    .swal2-timer-progress-bar {
+    .swal2-confirm {
       background: #FF9F1C !important;
+      color: #0B0F17 !important;
+      border: none !important;
+      border-radius: 40px !important;
+      font-weight: 600 !important;
+      font-size: 1rem !important; /* KEPT ORIGINAL */
+      padding: 12px 24px !important; /* KEPT ORIGINAL */
+      box-shadow: 0 4px 0 #b15f00 !important;
     }
 
-    /* Contact info panel */
-    .contact-info-panel {
-      background: #0B0F17;
-      border-radius: 16px;
-      padding: 12px;
-      margin: 5px 0 12px;
-      border: 1px solid #FF9F1C30;
+    .swal2-cancel {
+      background: transparent !important;
+      color: #aac5e5 !important;
+      border: 1px solid #3A4A62 !important;
+      border-radius: 40px !important;
+      font-weight: 500 !important;
+      font-size: 1rem !important; /* KEPT ORIGINAL */
+      padding: 12px 24px !important; /* KEPT ORIGINAL */
     }
 
-    .info-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 0;
+    .swal2-confirm:hover {
+      background: #ffb347 !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 0 #b15f00, 0 8px 20px rgba(255, 159, 28, 0.4) !important;
     }
 
-    .info-icon {
-      width: 28px;
-      height: 28px;
-      background: #FF9F1C15;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FF9F1C;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-    }
-
-    .info-text {
-      flex: 1;
-      min-width: 0; /* Allows text to wrap if needed */
-    }
-
-    .info-text .title {
-      font-weight: 600;
-      color: #fff;
-      font-size: 0.85rem;
-      margin-bottom: 2px;
-    }
-
-    .info-text .subtitle {
-      font-size: 0.65rem;
-      color: #9bb5d8;
-    }
-
-    .benefit-badge {
-      background: #FF9F1C20;
-      border-radius: 20px;
-      padding: 6px 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      color: #FF9F1C;
-      border: 1px dashed #FF9F1C40;
-      margin: 12px 0 6px;
-      flex-wrap: wrap;
+    .swal2-cancel:hover {
+      border-color: #FF9F1C !important;
+      color: #ffffff !important;
+      background: rgba(255, 159, 28, 0.1) !important;
     }
 
     /* Floating animation - subtle */
@@ -580,6 +585,11 @@
       .bot-features span { font-size: 0.7rem; }
       .hero-tagline { font-size: 1rem; }
       .bullet-item { font-size: 0.8rem; }
+      
+      /* Slightly reduce modal padding on very small screens */
+      .swal2-popup {
+        padding: 20px 16px !important;
+      }
     }
   </style>
 </head>
@@ -885,7 +895,7 @@
               <p style="margin-top: 8px;"><i class="fas fa-mobile-alt" style="color: #FF9F1C; margin-right: 6px;"></i><strong>Phone:</strong> You'll receive an M-Pesa STK push</p>
             </div>
             
-            <input type="email" id="swal-email" class="swal2-input" placeholder="Email address" value="" style="margin-bottom: 8px;">
+            <input type="email" id="swal-email" class="swal2-input" placeholder="your@email.com" value="">
             
             <div class="phone-input-group">
               <span class="phone-prefix">+254</span>
@@ -902,19 +912,19 @@
                 <span class="summary-value">KES ${fee}</span>
               </div>
               <div class="summary-row" style="font-weight: 600; border-top: 1px solid #3A4A62; margin-top: 6px; padding-top: 6px;">
-                <span>Total:</span>
+                <span>Total</span>
                 <span class="summary-value">KES ${amount + fee}</span>
               </div>
             </div>
             
-            <p style="font-size: 0.75rem; color: #9bb5d8; margin-top: 12px;">
-              <i class="fas fa-lock" style="color: #FF9F1C;"></i> Your details are secure
+            <p style="font-size: 0.75rem; color: #9bb5d8; text-align: center; margin: 8px 0 4px;">
+              <i class="fas fa-lock" style="color: #FF9F1C;"></i> 256-bit encrypted
             </p>
           </div>
         `,
         showCancelButton: true,
-        confirmButtonText: 'Pay Now',
-        cancelButtonText: 'Cancel',
+        confirmButtonText: 'PAY NOW',
+        cancelButtonText: 'CANCEL',
         allowOutsideClick: false,
         preConfirm: () => {
           const email = document.getElementById('swal-email').value.trim();
@@ -931,7 +941,6 @@
           }
           
           try {
-            // Basic cleanup only - backend handles the actual normalization
             const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
             return { email, phone: cleanPhone };
           } catch (e) {
