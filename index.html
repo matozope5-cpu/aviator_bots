@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AviatorBot AI · next‑gen predictor</title>
+  <!-- fresh font stack & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- SweetAlert2 -->
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+  <style>
+    /* ----- DEEP AVIATOR THEME – DARK LAYER WITH GOLDEN ORANGE ACCENTS (#FF9F1C) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0B0F17;   /* deep space */
+      color: #edf2f7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* glowing orange overlay (aviator energy) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 30%, rgba(255, 159, 28, 0.15), transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(255, 159, 28, 0.1), transparent 55%);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* subtle flight‑path grid */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 159, 28, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 159, 28, 0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* main container – 500px for a bit more breathing room */
+    .app {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ----- HEADER (aviator twist) ----- */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: #fff;
+    }
+
+    .logo span {
+      color: #FF9F1C;         /* signature orange */
+      text-shadow: 0 0 8px rgba(255,159,28,0.6);
+    }
+
+    .live-badge {
+      background: #1E2635;
+      padding: 6px 14px;
+      border-radius: 40px;
+      border: 1px solid #3C485C;
+      color: #d3e0f0;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #FF9F1C;
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse { 0%{opacity:0.4} 50%{opacity:1} 100%{opacity:0.4} }
+
+    /* ----- HERO – AVIATOR FOCUS (ENHANCED DESCRIPTION) ----- */
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.6rem;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .hero .glow-orange {
+      color: #FF9F1C;
+      text-shadow: 0 0 12px rgba(255,159,28,0.7);
+    }
+
+    .hero-description {
+      background: linear-gradient(145deg, #131F2F, #0B1320);
+      border-radius: 28px;
+      padding: 24px 22px;
+      border: 1px solid #FF9F1C30;
+      box-shadow: 0 15px 30px -10px rgba(255,159,28,0.2);
+      margin-top: 8px;
+    }
+
+    .hero-tagline {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #FF9F1C;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-tagline i {
+      font-size: 1.6rem;
+    }
+
+    .hero-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 18px 0 8px;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1rem;
+    }
+
+    .bullet-icon {
+      background: #FF9F1C20;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FF9F1C;
+      font-size: 1.2rem;
+      border: 1px solid #FF9F1C40;
+    }
+
+    .bullet-text {
+      flex: 1;
+      color: #e6edf5;
+    }
+
+    .bullet-text strong {
+      color: #FF9F1C;
+      font-weight: 600;
+    }
+
+    .hero-stats-mini {
+      display: flex;
+      justify-content: space-between;
+      background: #0B0F17;
+      border-radius: 40px;
+      padding: 14px 18px;
+      margin-top: 20px;
+      border: 1px solid #2A384B;
+    }
+
+    .mini-stat {
+      text-align: center;
+    }
+
+    .mini-stat .value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #FF9F1C;
+    }
+
+    .mini-stat .label {
+      font-size: 0.7rem;
+      color: #9bb5d8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ----- 5 BOT CARDS – full width, orange accents ----- */
+    .bot-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .bot-card {
+      background: #101826;
+      border: 1px solid #283549;
+      border-radius: 28px;
+      padding: 22px;
+      transition: all 0.25s;
+      box-shadow: 0 8px 0 rgba(0,0,0,0.3);
+    }
+
+    .bot-card:hover {
+      border-color: #FF9F1C;
+      box-shadow: 0 8px 0 #FF9F1C, 0 0 30px rgba(255, 159, 28, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .bot-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+
+    .bot-badge {
+      background: #FF9F1C;
+      color: #0B0F17;
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .bot-features {
+      margin: 12px 0 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+
+    .bot-features span {
+      font-size: 0.85rem;
+      color: #cfdef5;
+    }
+
+    .bot-features i {
+      color: #FF9F1C;
+      width: 18px;
+      margin-right: 4px;
+    }
+
+    .price-section {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-top: 1px dashed #2E3E55;
+      padding-top: 14px;
+      margin-top: 6px;
+    }
+
+    .price-ksh {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #FF9F1C;
+    }
+
+    .price-usd {
+      color: #97b9db;
+      font-size: 0.9rem;
+      margin-left: 6px;
+    }
+
+    .buy-btn {
+      background: #FF9F1C;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #0B0F17;
+      cursor: pointer;
+      transition: 0.15s;
+      box-shadow: 0 4px 0 #b15f00;
+    }
+
+    .buy-btn:hover {
+      background: #ffb347;
+      box-shadow: 0 4px 0 #b15f00, 0 0 12px #FF9F1C;
+      transform: scale(1.02);
+    }
+
+    .buy-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #b15f00;
+    }
+
+    /* ----- FOOTER ----- */
+    .footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #7f9bc0;
+      margin-top: 20px;
+      border-top: 1px solid #253141;
+      padding-top: 24px;
+    }
+
+    /* ----- SWEET ALERT CUSTOM (orange twist) WITH IMPROVED EMAIL FIELD ----- */
+    .swal2-popup {
+      background: #131F2F !important;
+      color: #edf2f7 !important;
+      border: 1px solid #3A4A62 !important;
+      border-radius: 28px !important;
+      font-family: 'Inter', sans-serif !important;
+      width: 480px !important;
+      padding: 20px !important;
+    }
+
+    .swal2-title {
+      color: #ffffff !important;
+      font-family: 'Space Grotesk', sans-serif !important;
+      font-size: 1.6rem !important;
+    }
+
+    .swal2-html-container {
+      color: #d2e0f0 !important;
+      margin: 10px 0 0 !important;
+      padding: 0 !important;
+    }
+
+    /* Make email input span full width like phone input */
+    .swal2-input {
+      background: #0F1A26 !important;
+      border: 1px solid #3A4A62 !important;
+      border-radius: 16px !important;
+      color: #fff !important;
+      font-size: 16px !important;
+      padding: 14px 18px !important;
+      width: 100% !important;
+      margin: 8px 0 16px !important;
+      box-sizing: border-box !important;
+      transition: all 0.2s ease;
+    }
+
+    .swal2-input:focus {
+      border-color: #FF9F1C !important;
+      box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.2) !important;
+      outline: none !important;
+    }
+
+    /* Phone input group - now matches email width exactly */
+    .phone-input-group {
+      display: flex;
+      align-items: center;
+      background: #0F1A26;
+      border: 1px solid #3A4A62;
+      border-radius: 16px;
+      margin: 8px 0 16px;
+      overflow: hidden;
+      height: 52px;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+
+    .phone-input-group:focus-within {
+      border-color: #FF9F1C;
+      box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.2);
+    }
+
+    .phone-prefix {
+      padding: 0 16px;
+      background: #1C2B3E;
+      color: #FF9F1C;
+      font-weight: 600;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-right: 1px solid #3A4A62;
+      font-size: 1rem;
+    }
+
+    .phone-input-group input {
+      flex: 1;
+      background: transparent !important;
+      border: none !important;
+      padding: 0 16px !important;
+      height: 100%;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .phone-input-group input:focus { 
+      outline: none; 
+    }
+
+    /* Info panel styling */
+    .contact-info-panel {
+      background: #0B0F17;
+      border-radius: 20px;
+      padding: 16px;
+      margin: 8px 0 16px;
+      border: 1px solid #FF9F1C30;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid #253141;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-icon {
+      width: 32px;
+      height: 32px;
+      background: #FF9F1C15;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FF9F1C;
+      font-size: 1rem;
+    }
+
+    .info-text {
+      flex: 1;
+    }
+
+    .info-text .title {
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .info-text .subtitle {
+      font-size: 0.75rem;
+      color: #9bb5d8;
+    }
+
+    .benefit-badge {
+      background: #FF9F1C20;
+      border-radius: 30px;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #FF9F1C;
+      border: 1px dashed #FF9F1C40;
+      margin: 16px 0 8px;
+    }
+
+    .benefit-badge i {
+      font-size: 1rem;
+    }
+
+    .summary-box {
+      background: #0F1A26;
+      border-radius: 20px;
+      padding: 16px;
+      margin: 16px 0;
+      border: 1px solid #3A4A62;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      color: #b2c9e2;
+    }
+
+    .summary-value { 
+      color: #FF9F1C; 
+      font-weight: 600; 
+    }
+
+    .info-note {
+      background: rgba(255, 159, 28, 0.1);
+      border-left: 4px solid #FF9F1C;
+      padding: 14px 16px;
+      border-radius: 14px;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+
+    .stk-phone-display {
+      background: #0F1A26;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid #3A4A62;
+      color: #FF9F1C;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* Add floating animation for better engagement */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .bot-card:nth-child(odd) {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .bot-card:nth-child(even) {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    /* Add subtle pulse to CTA */
+    .buy-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .buy-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s;
+    }
+
+    .buy-btn:active::after {
+      width: 120px;
+      height: 120px;
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- header with flight pulse -->
+  <div class="header">
+    <div class="logo">A<span>viator</span>Bot AI</div>
+    <div class="live-badge"><span class="pulse-dot"></span> 5 bots live</div>
+  </div>
+
+  <!-- hero – aviator takeover with ENHANCED description (stats removed) -->
+  <div class="hero">
+    <h1>Predict<span class="glow-orange">.</span> Take off<span class="glow-orange">.</span></h1>
+    
+    <!-- attractive description block -->
+    <div class="hero-description">
+      <div class="hero-tagline">
+        <i class="fas fa-rocket"></i> Multi‑strategy Aviator prediction bots
+      </div>
+      
+      <div class="hero-bullets">
+        <div class="bullet-item">
+          <div class="bullet-icon"><i class="fas fa-bolt"></i></div>
+          <div class="bullet-text"><strong>Real‑time signals</strong> — 15 to 80 predictions per minute, direct to your device</div>
+        </div>
+        <div class="bullet-item">
+          <div class="bullet-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="bullet-text"><strong>5 advanced tiers</strong> — from Rookie (82% accuracy) to Quantum (97% accuracy)</div>
+        </div>
+        <div class="bullet-item">
+          <div class="bullet-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="bullet-text"><strong>Bank‑grade security</strong> — encrypted delivery, instant M‑Pesa activation</div>
+        </div>
+        <div class="bullet-item">
+          <div class="bullet-icon"><i class="fas fa-trophy"></i></div>
+          <div class="bullet-text"><strong>93.7% avg. win rate</strong> — across all active bots (last 7 days)</div>
+        </div>
+      </div>
+      
+      <!-- mini stats row for extra credibility -->
+      <div class="hero-stats-mini">
+        <div class="mini-stat">
+          <div class="value">2,180,000+</div>
+          <div class="label">today's pool</div>
+        </div>
+        <div class="mini-stat">
+          <div class="value">15K+</div>
+          <div class="label">active users</div>
+        </div>
+        <div class="mini-stat">
+          <div class="value">4.98 ★</div>
+          <div class="label">user rating</div>
+        </div>
+      </div>
+      
+      <p style="color: #FF9F1C; font-size: 0.9rem; margin-top: 16px; text-align: center; font-weight: 500;">
+        <i class="fas fa-arrow-down" style="margin-right: 6px;"></i> Choose your bot below and take off today
+      </p>
+    </div>
+  </div>
+
+  <!-- 5 BOT CARDS – fully redesigned for aviator bots -->
+  <div class="bot-cards">
+
+    <!-- BOT 1 – rookie -->
+    <div class="bot-card" data-tier="rookie" data-amount="150" data-fee="29">
+      <div class="card-header">
+        <span class="bot-name">Rookie</span>
+        <span class="bot-badge">BASIC</span>
+      </div>
+      <div class="bot-features">
+        <span><i class="fas fa-robot"></i> 1.2x – 2.5x signals</span>
+        <span><i class="fas fa-clock"></i> 15/min</span>
+        <span><i class="fas fa-chart-line"></i> 82% accuracy</span>
+      </div>
+      <div class="price-section">
+        <div><span class="price-ksh">KES 150</span> </div>
+        <button class="buy-btn">Select</button>
+      </div>
+    </div>
+
+    <!-- BOT 2 – altituder -->
+    <div class="bot-card" data-tier="altituder" data-amount="250" data-fee="49">
+      <div class="card-header">
+        <span class="bot-name">Altituder</span>
+        <span class="bot-badge">CORE</span>
+      </div>
+      <div class="bot-features">
+        <span><i class="fas fa-robot"></i> 1.5x – 4.0x signals</span>
+        <span><i class="fas fa-clock"></i> 25/min</span>
+        <span><i class="fas fa-chart-line"></i> 87% accuracy</span>
+        <span><i class="fas fa-bolt"></i> low latency</span>
+      </div>
+      <div class="price-section">
+        <div><span class="price-ksh">KES 250</span> </div>
+        <button class="buy-btn">Select</button>
+      </div>
+    </div>
+
+    <!-- BOT 3 – stratosphere -->
+    <div class="bot-card" data-tier="stratosphere" data-amount="325" data-fee="59">
+      <div class="card-header">
+        <span class="bot-name">Stratosphere</span>
+        <span class="bot-badge">PRO</span>
+      </div>
+      <div class="bot-features">
+        <span><i class="fas fa-robot"></i> 2.0x – 8.0x signals</span>
+        <span><i class="fas fa-clock"></i> 40/min</span>
+        <span><i class="fas fa-chart-line"></i> 91% accuracy</span>
+        <span><i class="fas fa-shield-alt"></i> priority</span>
+      </div>
+      <div class="price-section">
+        <div><span class="price-ksh">KES 325</span> </div>
+        <button class="buy-btn">Select</button>
+      </div>
+    </div>
+
+    <!-- BOT 4 – afterburner (high risk / high reward) -->
+    <div class="bot-card" data-tier="afterburner" data-amount="400" data-fee="70">
+      <div class="card-header">
+        <span class="bot-name">Afterburner</span>
+        <span class="bot-badge">ELITE</span>
+      </div>
+      <div class="bot-features">
+        <span><i class="fas fa-robot"></i> 3.5x – 15x signals</span>
+        <span><i class="fas fa-clock"></i> 55/min</span>
+        <span><i class="fas fa-chart-line"></i> 94% accuracy</span>
+        <span><i class="fas fa-crown"></i> exclusive</span>
+      </div>
+      <div class="price-section">
+        <div><span class="price-ksh">KES 400</span> </div>
+        <button class="buy-btn">Select</button>
+      </div>
+    </div>
+
+    <!-- BOT 5 – quantum (max coverage) -->
+    <div class="bot-card" data-tier="quantum" data-amount="470" data-fee="80">
+      <div class="card-header">
+        <span class="bot-name">Quantum</span>
+        <span class="bot-badge">INSTITUTIONAL</span>
+      </div>
+      <div class="bot-features">
+        <span><i class="fas fa-robot"></i> 5.0x – 30x signals</span>
+        <span><i class="fas fa-clock"></i> 80/min</span>
+        <span><i class="fas fa-chart-line"></i> 97% accuracy</span>
+        <span><i class="fas fa-infinity"></i> uncapped</span>
+      </div>
+      <div class="price-section">
+        <div><span class="price-ksh">KES 470</span> </div>
+        <button class="buy-btn">Select</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 AviatorBot AI · predictive intelligence · v2.0
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+
+<script>
+  (function() {
+    // ---- removed stats counter since stats grid is gone ----
+
+    // ---------- PAYMENT FLOW (aviator version) ----------
+    const API_ENDPOINTS = {
+      initiatePayment: '/api/initiate-payment',
+      verifyPayment: '/api/verify-payment',
+      normalizePhone: '/api/normalize-phone'
+    };
+
+    let selectedTier = null, selectedAmount = null, selectedFee = null;
+    let userEmail = '', userPhone = '', paymentReference = null;
+    let isProcessing = false;
+
+    // normalize frontend phone (basic cleanup)
+    function normalizePhoneInput(phone) {
+      let clean = phone.replace(/[\s\-\(\)]/g, '');
+      if (clean.startsWith('+')) clean = clean.substring(1);
+      if (clean.length < 9) throw new Error('Phone must have at least 9 digits');
+      return clean;
+    }
+
+    async function normalizePhoneNumber(phone) {
+      try {
+        if (API_ENDPOINTS.normalizePhone) {
+          const resp = await fetch(API_ENDPOINTS.normalizePhone, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone })
+          });
+          const data = await resp.json();
+          if (!resp.ok) throw new Error(data.error || 'normalization failed');
+          return data.normalized_phone;
+        }
+        return phone;
+      } catch (e) {
+        console.warn('phone norm error', e);
+        throw e;
+      }
+    }
+
+    async function sendSTKPush(phone, amount, tier, email) {
+      const resp = await fetch(API_ENDPOINTS.initiatePayment, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone_number: phone,
+          amount: amount,
+          tier: tier,
+          email: email,
+          description: `AviatorBot AI: ${tier}`
+        })
+      });
+      if (!resp.ok) {
+        const err = await resp.json();
+        throw new Error(err.message || 'STK push failed');
+      }
+      return await resp.json();
+    }
+
+    async function checkPaymentStatus(ref, maxAttempts = 20, interval = 3000) {
+      let attempts = 0;
+      return new Promise((resolve, reject) => {
+        const int = setInterval(async () => {
+          attempts++;
+          try {
+            const resp = await fetch(`${API_ENDPOINTS.verifyPayment}?reference=${encodeURIComponent(ref)}`);
+            const data = await resp.json();
+            if (!resp.ok) {
+              if (attempts >= maxAttempts) { clearInterval(int); reject(new Error('verify failed')); }
+              return;
+            }
+            if (data.success && (data.status === 'COMPLETED' || data.status === 'SUCCESS')) {
+              clearInterval(int); resolve(true);
+            } else if (data.success && (data.status === 'FAILED' || data.status === 'CANCELLED')) {
+              clearInterval(int); reject(new Error('payment cancelled'));
+            } else if (attempts >= maxAttempts) {
+              clearInterval(int); reject(new Error('timeout'));
+            }
+          } catch (e) {
+            if (attempts >= maxAttempts) { clearInterval(int); reject(e); }
+          }
+        }, interval);
+      });
+    }
+
+    // show contact modal for selected bot - ENHANCED with better info and matching widths
+    function showContactModal(tier, amount, fee) {
+      selectedTier = tier;
+      selectedAmount = amount;
+      selectedFee = fee;
+
+      // Capitalize tier name for display
+      const tierDisplay = tier.charAt(0).toUpperCase() + tier.slice(1);
+
+      Swal.fire({
+        title: `🚀 Activate ${tierDisplay} Bot`,
+        html: `
+          <div style="text-align:left">
+            <!-- Enhanced info panel with detailed explanations -->
+            <div class="contact-info-panel">
+              <div class="info-row">
+                <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                <div class="info-text">
+                  <div class="title">Email Address</div>
+                  <div class="subtitle">Your bot credentials & dashboard access will be sent here</div>
+                </div>
+              </div>
+              <div class="info-row">
+                <div class="info-icon"><i class="fas fa-mobile-alt"></i></div>
+                <div class="info-text">
+                  <div class="title">Phone Number (M-Pesa)</div>
+                  <div class="subtitle">You'll receive an STK push to complete payment instantly</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit badges for trust -->
+            <div class="benefit-badge">
+              <i class="fas fa-clock"></i> Delivery within 10 minutes after payment
+            </div>
+            <div class="benefit-badge">
+              <i class="fas fa-headset"></i> 24/7 support included with all bots
+            </div>
+
+            <!-- Email input - now full width -->
+            <input type="email" id="swal-email" class="swal2-input" placeholder="your@email.com" value="" style="margin-bottom: 16px;">
+            
+            <!-- Phone input - exactly matches email width -->
+            <div class="phone-input-group">
+              <span class="phone-prefix">+254</span>
+              <input type="tel" id="swal-phone" placeholder="712 345 678" value="">
+            </div>
+
+            <!-- Help text for phone format -->
+            <p style="color: #9bb5d8; font-size: 0.7rem; margin: 4px 0 12px 12px;">
+              <i class="fas fa-info-circle"></i> Enter Safaricom number (e.g., 712345678)
+            </p>
+            
+            <!-- Summary box with clear pricing -->
+            <div class="summary-box">
+              <div class="summary-row">
+                <span><i class="fas fa-robot" style="color:#FF9F1C; margin-right:6px;"></i>Bot price (${tierDisplay})</span>
+                <span class="summary-value">KES ${amount}</span>
+              </div>
+              <div class="summary-row">
+                <span><i class="fas fa-tools" style="color:#FF9F1C; margin-right:6px;"></i>Activation fee</span>
+                <span class="summary-value">KES ${fee}</span>
+              </div>
+              <div class="summary-row" style="font-weight:700;border-top:1px solid #3A4A62;margin-top:8px;padding-top:10px">
+                <span>💰 Total to pay</span>
+                <span class="summary-value" style="font-size:1.3rem;">KES ${amount + fee}</span>
+              </div>
+            </div>
+
+            <!-- Security reassurance -->
+            <p style="font-size:0.75rem; color:#9bb5d8; text-align:center; margin-top:12px;">
+              <i class="fas fa-lock" style="color:#FF9F1C;"></i> 256-bit encrypted · your data is safe with us
+            </p>
+          </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: '💳 Pay Now',
+        cancelButtonText: 'Cancel',
+        confirmButtonColor: '#FF9F1C',
+        cancelButtonColor: '#3A4A62',
+        width: '500px',
+        preConfirm: () => {
+          const email = document.getElementById('swal-email').value.trim();
+          const phone = document.getElementById('swal-phone').value.trim();
+          
+          if (!email || !email.includes('@') || !email.includes('.')) {
+            Swal.showValidationMessage('✉️ Please enter a valid email address');
+            return false;
+          }
+          
+          if (!phone) {
+            Swal.showValidationMessage('📱 Phone number is required');
+            return false;
+          }
+          
+          // Basic phone validation (Kenyan numbers)
+          const phoneDigits = phone.replace(/\D/g, '');
+          if (phoneDigits.length < 9) {
+            Swal.showValidationMessage('📱 Please enter a valid 9-10 digit phone number');
+            return false;
+          }
+          
+          try {
+            const cleaned = phone.replace(/[\s\-\(\)]/g, '');
+            return { email, phone: cleaned };
+          } catch (e) {
+            Swal.showValidationMessage(e.message);
+            return false;
+          }
+        }
+      }).then(res => {
+        if (res.isConfirmed) {
+          userEmail = res.value.email;
+          userPhone = res.value.phone;
+          initiatePayment();
+        }
+      });
+
+      // Auto-focus email after modal opens
+      setTimeout(() => {
+        const emailInput = document.getElementById('swal-email');
+        if (emailInput) emailInput.focus();
+      }, 300);
+    }
+
+    async function initiatePayment() {
+      if (isProcessing) return;
+      if (!userPhone || !userEmail?.includes('@')) {
+        Swal.fire({ 
+          icon: 'error', 
+          title: 'Missing information', 
+          text: 'Email and phone are required', 
+          confirmButtonColor: '#FF9F1C' 
+        });
+        return;
+      }
+      
+      isProcessing = true;
+      
+      try {
+        await Swal.fire({ 
+          title: 'Processing', 
+          html: '<div style="margin:20px;"><i class="fas fa-spinner fa-pulse" style="font-size:2rem;color:#FF9F1C;"></i><p style="margin-top:15px;">Preparing your payment...</p></div>', 
+          allowOutsideClick: false, 
+          showConfirmButton: false,
+          background: '#131F2F'
+        });
+
+        const normalizedPhone = await normalizePhoneNumber(userPhone);
+        const paymentResponse = await sendSTKPush(normalizedPhone, selectedAmount + selectedFee, selectedTier, userEmail);
+        paymentReference = paymentResponse.reference;
+
+        await Swal.fire({
+          title: '📲 STK Push Sent!',
+          html: `
+            <div style="text-align: center;">
+              <div style="font-size:3rem; color:#FF9F1C; margin:15px 0;">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <p style="font-size:1.1rem; margin-bottom:10px;"><strong>Check your phone for M‑Pesa PIN request</strong></p>
+              <div class="stk-phone-display" style="margin:15px 0;">
+                <i class="fas fa-phone-alt" style="margin-right:8px;"></i> ${normalizedPhone}
+              </div>
+              <p style="color:#9bb5d8; font-size:0.85rem;">
+                <i class="fas fa-hourglass-half" style="color:#FF9F1C;"></i> Verifying payment...
+              </p>
+              <div style="width:100%; background:#1E2A3A; height:4px; border-radius:4px; margin-top:15px;">
+                <div style="width:0%; height:4px; background:#FF9F1C; border-radius:4px; animation: progress 30s linear;"></div>
+              </div>
+            </div>
+            <style>@keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }</style>
+          `,
+          showConfirmButton: false,
+          allowOutsideClick: false
+        });
+
+        const success = await checkPaymentStatus(paymentReference);
+        
+        if (success) {
+          await Swal.fire({
+            title: '✅ Bot Activated!',
+            html: `
+              <div style="text-align: center;">
+                <div style="font-size:4rem; color:#FF9F1C; margin:10px 0;">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <p style="font-size:1.2rem; margin-bottom:15px;"><strong>Your ${selectedTier} bot is ready!</strong></p>
+                <div class="info-note" style="text-align:left; background:#0F1A26;">
+                  <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                    <i class="fas fa-envelope" style="color:#FF9F1C; font-size:1.2rem;"></i>
+                    <span style="color:#fff;">Credentials sent to:</span>
+                  </div>
+                  <div style="background:#0B0F17; padding:12px; border-radius:12px; border:1px solid #FF9F1C30;">
+                    <span style="color:#FF9F1C; font-weight:600; word-break:break-all;">${userEmail}</span>
+                  </div>
+                  <p style="color:#9bb5d8; margin-top:12px; font-size:0.85rem; text-align:center;">
+                    <i class="fas fa-clock" style="color:#FF9F1C;"></i> Delivery within 10 minutes
+                  </p>
+                </div>
+                <div style="background:#FF9F1C15; padding:10px; border-radius:30px; margin-top:15px;">
+                  <p style="color:#FF9F1C; font-size:0.9rem;">
+                    <i class="fas fa-star"></i> Check your spam folder if you don't see the email
+                  </p>
+                </div>
+              </div>
+            `,
+            confirmButtonText: '🚀 Launch Dashboard',
+            confirmButtonColor: '#FF9F1C'
+          });
+          
+          // Reset state
+          selectedTier = null; 
+          selectedAmount = null; 
+          selectedFee = null; 
+          userEmail = ''; 
+          userPhone = ''; 
+          paymentReference = null;
+        }
+      } catch (err) {
+        console.error('Payment error:', err);
+        
+        Swal.fire({
+          title: '❌ Payment Failed',
+          html: `
+            <div style="text-align:center;">
+              <div style="font-size:3rem; color:#FF9F1C; margin:10px 0;">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <p style="margin-bottom:10px;"><strong>${err.message || 'Transaction could not be completed'}</strong></p>
+              <p style="color:#9bb5d8; font-size:0.9rem; margin-bottom:15px;">
+                Common fixes:<br>
+                • Ensure you have sufficient M-Pesa balance<br>
+                • Check that you entered the correct phone number<br>
+                • Try again in a few minutes
+              </p>
+              <div style="background:#FF9F1C15; padding:10px; border-radius:10px;">
+                <p style="color:#FF9F1C; font-size:0.85rem;">
+                  <i class="fas fa-headset"></i> Need help? Contact support
+                </p>
+              </div>
+            </div>
+          `,
+          confirmButtonText: 'Try Again',
+          confirmButtonColor: '#FF9F1C',
+          showCancelButton: true,
+          cancelButtonText: 'Cancel',
+          cancelButtonColor: '#3A4A62'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Re-open the contact modal with same tier
+            showContactModal(selectedTier, selectedAmount, selectedFee);
+          }
+        });
+      } finally {
+        isProcessing = false;
+      }
+    }
+
+    // attach listeners to all buy buttons
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const card = e.target.closest('.bot-card');
+        if (!card) return;
+        
+        // Add haptic feedback simulation
+        btn.style.transform = 'scale(0.95)';
+        setTimeout(() => btn.style.transform = '', 100);
+        
+        const tier = card.dataset.tier;
+        const amount = parseInt(card.dataset.amount);
+        const fee = parseInt(card.dataset.fee);
+        showContactModal(tier, amount, fee);
+      });
+    });
+
+    // prevent zoom on double-tap
+    let lastTouch = 0;
+    document.addEventListener('touchend', e => {
+      const now = Date.now();
+      if (now - lastTouch < 300) e.preventDefault();
+      lastTouch = now;
+    }, { passive: false });
+  })();
+</script>
+</body>
+</html>
