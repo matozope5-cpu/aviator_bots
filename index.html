@@ -291,7 +291,7 @@
       color: #FF9F1C;
     }
 
-    /* REDESIGNED "GET NOW" BUTTON - sophisticated contrast, same size */
+    /* Sophisticated "GET NOW" button - cool blue that complements orange */
     .buy-btn {
       background: transparent;
       border: 2px solid #4A9EFF;  /* Cool blue that complements orange */
@@ -332,100 +332,174 @@
       padding-top: 16px;
     }
 
-    /* ----- SWEET ALERT CUSTOM - ELEGANT PAY NOW BUTTON (no drawable) ----- */
+    /* ----- SWEET ALERT CUSTOM - INTEGRATED FROM WORKING WEBPAGE ----- */
     .swal2-popup {
       background: #131F2F !important;
       color: #edf2f7 !important;
       border: 1px solid #3A4A62 !important;
       border-radius: 24px !important;
       font-family: 'Inter', sans-serif !important;
-      width: 92% !important;
-      max-width: 460px !important;
-      padding: 16px !important;
-      margin: 0 auto !important;
-      font-size: 14px !important;
     }
 
     .swal2-title {
       color: #ffffff !important;
       font-family: 'Space Grotesk', sans-serif !important;
-      font-size: 1.4rem !important;
-      padding: 0 !important;
-      margin-bottom: 8px !important;
     }
 
     .swal2-html-container {
       color: #d2e0f0 !important;
-      margin: 5px 0 0 !important;
-      padding: 0 !important;
-      font-size: 14px !important;
     }
 
-    /* Make email input span full width like phone input */
-    .swal2-input {
+    .swal2-input, .swal2-textarea {
       background: #0F1A26 !important;
       border: 1px solid #3A4A62 !important;
       border-radius: 14px !important;
       color: #fff !important;
-      font-size: 15px !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 16px !important;
       padding: 12px 16px !important;
       width: 100% !important;
-      margin: 6px 0 12px !important;
-      box-sizing: border-box !important;
-      height: auto !important;
+      margin: 8px 0 !important;
     }
 
-    .swal2-input:focus {
+    .swal2-input:focus, .swal2-textarea:focus {
       border-color: #FF9F1C !important;
-      box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.2) !important;
+      box-shadow: 0 0 0 2px rgba(255, 159, 28, 0.2) !important;
+      outline: none !important;
     }
 
-    /* Phone input group - matches email width */
+    .swal2-confirm {
+      background: #FF9F1C !important;
+      color: #0B0F17 !important;
+      border: none !important;
+      border-radius: 40px !important;
+      font-weight: 600 !important;
+      padding: 12px 24px !important;
+      font-size: 1rem !important;
+      box-shadow: 0 4px 0 #b15f00 !important;
+    }
+
+    .swal2-cancel {
+      background: transparent !important;
+      color: #aac5e5 !important;
+      border: 1px solid #3A4A62 !important;
+      border-radius: 40px !important;
+      font-weight: 500 !important;
+      padding: 12px 24px !important;
+      font-size: 1rem !important;
+    }
+
+    .swal2-confirm:hover {
+      background: #ffb347 !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 0 #b15f00, 0 8px 20px rgba(255, 159, 28, 0.4) !important;
+    }
+
+    .swal2-cancel:hover {
+      border-color: #FF9F1C !important;
+      color: #ffffff !important;
+      background: rgba(255, 159, 28, 0.1) !important;
+    }
+
+    /* Phone input group - from working webpage */
     .phone-input-group {
       display: flex;
       align-items: center;
       background: #0F1A26;
       border: 1px solid #3A4A62;
       border-radius: 14px;
-      margin: 6px 0 12px;
+      margin: 8px 0;
       overflow: hidden;
       height: 48px;
-      width: 100%;
-      transition: border-color 0.2s;
-    }
-
-    .phone-input-group:focus-within {
-      border-color: #FF9F1C;
-      box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.2);
     }
 
     .phone-prefix {
       padding: 0 14px;
-      background: #1C2B3E;
       color: #FF9F1C;
-      font-weight: 600;
+      font-size: 1rem;
+      background: #1C2B3E;
       height: 100%;
       display: flex;
       align-items: center;
+      justify-content: center;
       border-right: 1px solid #3A4A62;
-      font-size: 0.9rem;
+      font-weight: 500;
     }
 
     .phone-input-group input {
       flex: 1;
       background: transparent !important;
       border: none !important;
-      padding: 0 14px !important;
+      padding: 0 16px !important;
+      margin: 0 !important;
+      color: #ffffff !important;
+      font-size: 16px !important;
       height: 100%;
-      color: #fff;
-      font-size: 15px;
     }
 
-    .phone-input-group input:focus { 
-      outline: none; 
+    .phone-input-group input:focus {
+      outline: none !important;
+      box-shadow: none !important;
     }
 
-    /* Compact info panels */
+    /* Summary box */
+    .summary-box {
+      background: #0F1A26;
+      border-radius: 16px;
+      padding: 16px;
+      margin: 12px 0;
+      border: 1px solid #3A4A62;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .summary-value { 
+      color: #FF9F1C; 
+      font-weight: 600; 
+    }
+
+    /* Info note */
+    .info-note {
+      background: rgba(255, 159, 28, 0.1);
+      border-left: 3px solid #FF9F1C;
+      padding: 12px;
+      border-radius: 10px;
+      margin: 12px 0;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    /* Payment status icons */
+    .stk-push-icon, .success-icon, .error-icon {
+      font-size: 2.5rem;
+      color: #FF9F1C;
+      margin-bottom: 12px;
+    }
+
+    .stk-phone-display {
+      background: #0F1A26;
+      padding: 12px;
+      border-radius: 12px;
+      margin: 12px 0;
+      font-weight: 600;
+      color: #FF9F1C;
+      border: 1px solid #3A4A62;
+    }
+
+    .swal2-loader {
+      border-color: #FF9F1C transparent #FF9F1C transparent !important;
+    }
+
+    .swal2-timer-progress-bar {
+      background: #FF9F1C !important;
+    }
+
+    /* Contact info panel */
     .contact-info-panel {
       background: #0B0F17;
       border-radius: 16px;
@@ -476,100 +550,6 @@
       color: #FF9F1C;
       border: 1px dashed #FF9F1C40;
       margin: 12px 0 6px;
-    }
-
-    .summary-box {
-      background: #0F1A26;
-      border-radius: 16px;
-      padding: 12px;
-      margin: 12px 0;
-      border: 1px solid #3A4A62;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
-      color: #b2c9e2;
-      font-size: 0.85rem;
-    }
-
-    .summary-value { 
-      color: #FF9F1C; 
-      font-weight: 600; 
-    }
-
-    .info-note {
-      background: rgba(255, 159, 28, 0.1);
-      border-left: 4px solid #FF9F1C;
-      padding: 10px 12px;
-      border-radius: 12px;
-      margin: 12px 0;
-      font-size: 0.8rem;
-    }
-
-    .stk-phone-display {
-      background: #0F1A26;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid #3A4A62;
-      color: #FF9F1C;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    /* ELEGANT PAY NOW BUTTON - completely redesigned, no drawable */
-    .swal2-confirm {
-      background: linear-gradient(135deg, #FF9F1C, #f08b0c) !important;
-      color: #0B0F17 !important;
-      border: none !important;
-      border-radius: 40px !important;
-      font-weight: 600 !important;
-      font-size: 1rem !important;
-      padding: 12px 28px !important;
-      box-shadow: 0 4px 0 #b15f00, 0 8px 20px rgba(255, 159, 28, 0.3) !important;
-      transition: all 0.2s ease !important;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    }
-
-    .swal2-confirm:hover {
-      background: linear-gradient(135deg, #ffb347, #ff9f1c) !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 0 #b15f00, 0 12px 25px rgba(255, 159, 28, 0.4) !important;
-    }
-
-    .swal2-confirm:active {
-      transform: translateY(2px) !important;
-      box-shadow: 0 2px 0 #b15f00, 0 8px 20px rgba(255, 159, 28, 0.3) !important;
-    }
-
-    /* Cancel button styling */
-    .swal2-cancel {
-      background: transparent !important;
-      color: #aac5e5 !important;
-      border: 1px solid #3A4A62 !important;
-      border-radius: 40px !important;
-      font-weight: 500 !important;
-      padding: 12px 28px !important;
-      transition: all 0.2s ease !important;
-    }
-
-    .swal2-cancel:hover {
-      border-color: #FF9F1C !important;
-      color: #fff !important;
-      background: rgba(255, 159, 28, 0.1) !important;
-    }
-
-    /* Remove any pseudo-element drawables */
-    .swal2-confirm::after,
-    .swal2-confirm::before,
-    .buy-btn::after,
-    .buy-btn::before {
-      display: none !important;
-      content: none !important;
     }
 
     /* Floating animation - subtle */
@@ -660,7 +640,7 @@
     </div>
   </div>
 
-  <!-- 5 BOT CARDS – with sophisticated GET NOW buttons (same size, distinct color) -->
+  <!-- 5 BOT CARDS – with sophisticated GET NOW buttons -->
   <div class="bot-cards">
 
     <!-- BOT 1 – rookie -->
@@ -762,82 +742,130 @@
 
 <script>
   (function() {
-    // ---------- PAYMENT FLOW (aviator version) ----------
+    // ---------- PAYMENT FLOW - INTEGRATED FROM WORKING WEBPAGE ----------
     const API_ENDPOINTS = {
       initiatePayment: '/api/initiate-payment',
       verifyPayment: '/api/verify-payment',
       normalizePhone: '/api/normalize-phone'
     };
 
-    let selectedTier = null, selectedAmount = null, selectedFee = null;
-    let userEmail = '', userPhone = '', paymentReference = null;
+    // State management
+    let selectedTier = null;
+    let selectedAmount = null;
+    let selectedFee = null;
+    let userEmail = '';
+    let userPhone = '';
+    let paymentReference = null;
     let isProcessing = false;
 
+    // Phone number normalization - from working webpage
+    function normalizePhoneInput(phone) {
+      // Remove any spaces, dashes, or special characters
+      let cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+      
+      // Remove leading + if present
+      if (cleanPhone.startsWith('+')) {
+        cleanPhone = cleanPhone.substring(1);
+      }
+      
+      // Accept any format that has at least 9 digits after cleanup
+      if (cleanPhone.length < 9) {
+        throw new Error('Phone number must be at least 9 digits');
+      }
+      
+      return cleanPhone;
+    }
+
+    // Normalize phone for API - call backend endpoint
     async function normalizePhoneNumber(phone) {
       try {
         if (API_ENDPOINTS.normalizePhone) {
-          const resp = await fetch(API_ENDPOINTS.normalizePhone, {
+          const response = await fetch(API_ENDPOINTS.normalizePhone, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone })
+            body: JSON.stringify({ phone: phone })
           });
-          const data = await resp.json();
-          if (!resp.ok) throw new Error(data.error || 'normalization failed');
+          
+          const data = await response.json();
+          
+          if (!response.ok) {
+            throw new Error(data.error || 'Phone normalization failed');
+          }
+          
           return data.normalized_phone;
         }
         return phone;
-      } catch (e) {
-        console.warn('phone norm error', e);
-        throw e;
+      } catch (error) {
+        console.warn('Phone normalization failed:', error);
+        throw error;
       }
     }
 
-    async function sendSTKPush(phone, amount, tier, email) {
-      const resp = await fetch(API_ENDPOINTS.initiatePayment, {
+    // Send STK push
+    async function sendSTKPush(phoneNumber, amount, tierName, email) {
+      const response = await fetch(API_ENDPOINTS.initiatePayment, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          phone_number: phone,
+          phone_number: phoneNumber,
           amount: amount,
-          tier: tier,
+          tier: tierName,
           email: email,
-          description: `AviatorBot AI: ${tier}`
+          description: `AviatorBot AI: ${tierName}`
         })
       });
-      if (!resp.ok) {
-        const err = await resp.json();
-        throw new Error(err.message || 'STK push failed');
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Payment initiation failed');
       }
-      return await resp.json();
+      
+      return await response.json();
     }
 
-    async function checkPaymentStatus(ref, maxAttempts = 20, interval = 3000) {
+    // Check payment status
+    async function checkPaymentStatus(reference, maxAttempts = 20, intervalMs = 3000) {
       let attempts = 0;
+      
       return new Promise((resolve, reject) => {
-        const int = setInterval(async () => {
+        const checkInterval = setInterval(async () => {
           attempts++;
+          
           try {
-            const resp = await fetch(`${API_ENDPOINTS.verifyPayment}?reference=${encodeURIComponent(ref)}`);
-            const data = await resp.json();
-            if (!resp.ok) {
-              if (attempts >= maxAttempts) { clearInterval(int); reject(new Error('verify failed')); }
+            const response = await fetch(`${API_ENDPOINTS.verifyPayment}?reference=${encodeURIComponent(reference)}`);
+            
+            if (!response.ok) {
+              if (attempts >= maxAttempts) {
+                clearInterval(checkInterval);
+                reject(new Error('Payment verification failed'));
+              }
               return;
             }
+            
+            const data = await response.json();
+            
             if (data.success && (data.status === 'COMPLETED' || data.status === 'SUCCESS')) {
-              clearInterval(int); resolve(true);
+              clearInterval(checkInterval);
+              resolve(true);
             } else if (data.success && (data.status === 'FAILED' || data.status === 'CANCELLED')) {
-              clearInterval(int); reject(new Error('payment cancelled'));
+              clearInterval(checkInterval);
+              reject(new Error('Payment failed or was cancelled'));
             } else if (attempts >= maxAttempts) {
-              clearInterval(int); reject(new Error('timeout'));
+              clearInterval(checkInterval);
+              reject(new Error('Payment verification timeout'));
             }
-          } catch (e) {
-            if (attempts >= maxAttempts) { clearInterval(int); reject(e); }
+          } catch (error) {
+            console.error('Payment status check error:', error);
+            if (attempts >= maxAttempts) {
+              clearInterval(checkInterval);
+              reject(new Error('Payment verification failed'));
+            }
           }
-        }, interval);
+        }, intervalMs);
       });
     }
 
-    // show contact modal for selected bot
+    // Show contact details modal
     function showContactModal(tier, amount, fee) {
       selectedTier = tier;
       selectedAmount = amount;
@@ -848,38 +876,18 @@
       Swal.fire({
         title: `🚀 Activate ${tierDisplay}`,
         html: `
-          <div style="text-align:left">
-            <div class="contact-info-panel">
-              <div class="info-row">
-                <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                <div class="info-text">
-                  <div class="title">Email Address</div>
-                  <div class="subtitle">Bot credentials & dashboard access</div>
-                </div>
-              </div>
-              <div class="info-row">
-                <div class="info-icon"><i class="fas fa-mobile-alt"></i></div>
-                <div class="info-text">
-                  <div class="title">Phone (M-Pesa)</div>
-                  <div class="subtitle">STK push to complete payment</div>
-                </div>
-              </div>
+          <div style="text-align: left;">
+            <div class="info-note">
+              <p><i class="fas fa-envelope" style="color: #FF9F1C; margin-right: 6px;"></i><strong>Email:</strong> We'll send your bot details and instructions here</p>
+              <p style="margin-top: 8px;"><i class="fas fa-mobile-alt" style="color: #FF9F1C; margin-right: 6px;"></i><strong>Phone:</strong> You'll receive an M-Pesa STK push</p>
             </div>
-
-            <div class="benefit-badge" style="margin-top:8px;">
-              <i class="fas fa-clock"></i> Delivery within 10 min
-            </div>
-
-            <input type="email" id="swal-email" class="swal2-input" placeholder="your@email.com" value="">
+            
+            <input type="email" id="swal-email" class="swal2-input" placeholder="Email address" value="" style="margin-bottom: 8px;">
             
             <div class="phone-input-group">
               <span class="phone-prefix">+254</span>
-              <input type="tel" id="swal-phone" placeholder="712 345 678" value="">
+              <input type="tel" id="swal-phone" placeholder="712345678" value="">
             </div>
-
-            <p style="color: #9bb5d8; font-size: 0.65rem; margin: 2px 0 8px 10px;">
-              <i class="fas fa-info-circle"></i> Enter Safaricom number
-            </p>
             
             <div class="summary-box">
               <div class="summary-row">
@@ -890,183 +898,235 @@
                 <span>Activation fee</span>
                 <span class="summary-value">KES ${fee}</span>
               </div>
-              <div class="summary-row" style="font-weight:700;border-top:1px solid #3A4A62;margin-top:6px;padding-top:8px">
-                <span>Total</span>
-                <span class="summary-value" style="font-size:1.2rem;">KES ${amount + fee}</span>
+              <div class="summary-row" style="font-weight: 600; border-top: 1px solid #3A4A62; margin-top: 6px; padding-top: 6px;">
+                <span>Total:</span>
+                <span class="summary-value">KES ${amount + fee}</span>
               </div>
             </div>
-
-            <p style="font-size:0.65rem; color:#9bb5d8; text-align:center;">
-              <i class="fas fa-lock" style="color:#FF9F1C;"></i> 256-bit encrypted
+            
+            <p style="font-size: 0.75rem; color: #9bb5d8; margin-top: 12px;">
+              <i class="fas fa-lock" style="color: #FF9F1C;"></i> Your details are secure
             </p>
           </div>
         `,
         showCancelButton: true,
-        confirmButtonText: '💳 PAY NOW',
+        confirmButtonText: 'Pay Now',
         cancelButtonText: 'Cancel',
-        confirmButtonColor: '#FF9F1C',
-        cancelButtonColor: '#3A4A62',
-        width: '92%',
+        allowOutsideClick: false,
         preConfirm: () => {
           const email = document.getElementById('swal-email').value.trim();
           const phone = document.getElementById('swal-phone').value.trim();
           
           if (!email || !email.includes('@') || !email.includes('.')) {
-            Swal.showValidationMessage('✉️ Valid email required');
+            Swal.showValidationMessage('Valid email required');
             return false;
           }
           
           if (!phone) {
-            Swal.showValidationMessage('📱 Phone required');
-            return false;
-          }
-          
-          const phoneDigits = phone.replace(/\D/g, '');
-          if (phoneDigits.length < 9) {
-            Swal.showValidationMessage('📱 Valid 9-10 digit number');
+            Swal.showValidationMessage('Phone number required');
             return false;
           }
           
           try {
-            const cleaned = phone.replace(/[\s\-\(\)]/g, '');
-            return { email, phone: cleaned };
+            // Basic cleanup only - backend handles the actual normalization
+            const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+            return { email, phone: cleanPhone };
           } catch (e) {
             Swal.showValidationMessage(e.message);
             return false;
           }
         }
-      }).then(res => {
-        if (res.isConfirmed) {
-          userEmail = res.value.email;
-          userPhone = res.value.phone;
+      }).then(result => {
+        if (result.isConfirmed) {
+          userEmail = result.value.email;
+          userPhone = result.value.phone;
           initiatePayment();
         }
       });
 
-      setTimeout(() => document.getElementById('swal-email')?.focus(), 300);
+      // Focus email input
+      setTimeout(() => {
+        const emailInput = document.getElementById('swal-email');
+        if (emailInput) emailInput.focus();
+      }, 300);
     }
 
+    // Main payment initiation
     async function initiatePayment() {
       if (isProcessing) return;
-      if (!userPhone || !userEmail?.includes('@')) {
-        Swal.fire({ icon: 'error', title: 'Missing info', text: 'Email and phone required', confirmButtonColor: '#FF9F1C' });
+      
+      if (!userPhone) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Phone Required',
+          text: 'Please enter your phone number',
+          confirmButtonColor: '#FF9F1C'
+        });
+        return;
+      }
+      
+      if (!userEmail || !userEmail.includes('@')) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Email Required',
+          text: 'Please enter your email address',
+          confirmButtonColor: '#FF9F1C'
+        });
         return;
       }
       
       isProcessing = true;
       
       try {
-        await Swal.fire({ 
-          title: 'Processing', 
-          html: '<div style="margin:15px;"><i class="fas fa-spinner fa-pulse" style="font-size:2rem;color:#FF9F1C;"></i><p style="margin-top:10px;">Preparing payment...</p></div>', 
-          allowOutsideClick: false, 
-          showConfirmButton: false,
-          background: '#131F2F'
+        // Show loading
+        Swal.fire({
+          title: 'Processing',
+          html: 'Please wait...',
+          allowOutsideClick: false,
+          didOpen: () => Swal.showLoading()
         });
-
+        
+        // Normalize phone using backend
+        Swal.update({
+          title: 'Validating Phone',
+          html: 'Checking phone number format...'
+        });
+        
         const normalizedPhone = await normalizePhoneNumber(userPhone);
-        const paymentResponse = await sendSTKPush(normalizedPhone, selectedAmount + selectedFee, selectedTier, userEmail);
+        
+        // Send STK push
+        Swal.update({
+          title: 'Sending STK Push',
+          html: 'Initiating payment request...'
+        });
+        
+        const paymentResponse = await sendSTKPush(
+          normalizedPhone,
+          selectedAmount + selectedFee,
+          selectedTier,
+          userEmail
+        );
+        
+        if (!paymentResponse || !paymentResponse.reference) {
+          throw new Error('Failed to initiate payment');
+        }
+        
         paymentReference = paymentResponse.reference;
-
-        await Swal.fire({
-          title: '📲 STK Push Sent!',
+        
+        // Show STK push sent
+        Swal.fire({
+          title: 'STK Push Sent!',
           html: `
             <div style="text-align: center;">
-              <div style="font-size:2.5rem; color:#FF9F1C; margin:10px 0;">
+              <div class="stk-push-icon">
                 <i class="fas fa-mobile-alt"></i>
               </div>
-              <p style="font-size:1rem; margin-bottom:8px;"><strong>Check your phone for M‑Pesa PIN</strong></p>
-              <div class="stk-phone-display" style="margin:10px 0; padding:10px;">
-                <i class="fas fa-phone-alt" style="margin-right:6px;"></i> ${normalizedPhone}
+              <p><strong>Check your phone for the M-Pesa STK push</strong></p>
+              <div class="stk-phone-display">
+                ${normalizedPhone}
               </div>
-              <p style="color:#9bb5d8; font-size:0.8rem;">
-                <i class="fas fa-hourglass-half" style="color:#FF9F1C;"></i> Verifying...
+              <p style="color: #9bb5d8; margin-top: 5px;">
+                Enter your M-Pesa PIN to complete payment
               </p>
-              <div style="width:100%; background:#1E2A3A; height:3px; border-radius:3px; margin-top:12px;">
-                <div style="width:0%; height:3px; background:#FF9F1C; border-radius:3px; animation: progress 30s linear;"></div>
+              <div style="background: #0F1A26; padding: 10px; border-radius: 8px; margin-top: 12px;">
+                <small>Verifying payment...</small>
               </div>
             </div>
-            <style>@keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }</style>
           `,
           showConfirmButton: false,
           allowOutsideClick: false
         });
-
-        const success = await checkPaymentStatus(paymentReference);
         
-        if (success) {
+        // Check payment status
+        const paymentSuccess = await checkPaymentStatus(paymentReference);
+        
+        if (paymentSuccess) {
           await Swal.fire({
-            title: '✅ Activated!',
+            title: 'Payment Successful!',
             html: `
               <div style="text-align: center;">
-                <div style="font-size:3rem; color:#FF9F1C; margin:5px 0;">
+                <div class="success-icon">
                   <i class="fas fa-check-circle"></i>
                 </div>
-                <p style="font-size:1.1rem; margin:5px 0;"><strong>Your ${selectedTier} bot is ready</strong></p>
-                <div style="background:#0F1A26; padding:10px; border-radius:12px; margin:10px 0;">
-                  <div style="color:#9bb5d8; font-size:0.8rem;">Credentials sent to:</div>
-                  <div style="color:#FF9F1C; font-weight:600; word-break:break-all; font-size:0.85rem;">${userEmail}</div>
+                <p><strong>Your ${selectedTier} bot has been activated!</strong></p>
+                
+                <div class="info-note" style="text-align: left; margin: 15px 0;">
+                  <p style="margin-bottom: 8px;"><i class="fas fa-envelope" style="color: #FF9F1C;"></i> <strong>Bot delivery</strong></p>
+                  <p style="font-size: 0.9rem; margin-bottom: 4px;">We've sent details to:</p>
+                  <p style="color: #FF9F1C; font-weight: 500;">${userEmail}</p>
+                  <p style="font-size: 0.8rem; color: #9bb5d8;">Delivery within 10 minutes</p>
                 </div>
-                <p style="color:#9bb5d8; font-size:0.7rem;">
-                  <i class="fas fa-clock" style="color:#FF9F1C;"></i> Delivery within 10 min
-                </p>
               </div>
             `,
-            confirmButtonText: '🚀 Launch',
-            confirmButtonColor: '#FF9F1C'
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#FF9F1C',
+            allowOutsideClick: false
           });
           
-          selectedTier = null; selectedAmount = null; selectedFee = null; 
-          userEmail = ''; userPhone = ''; paymentReference = null;
+          // Reset state
+          isProcessing = false;
+          selectedTier = null;
+          selectedAmount = null;
+          selectedFee = null;
+          userEmail = '';
+          userPhone = '';
+          paymentReference = null;
         }
-      } catch (err) {
+        
+      } catch (error) {
+        console.error('Payment error:', error);
+        
         Swal.fire({
-          title: '❌ Payment Failed',
+          title: 'Payment Failed',
           html: `
-            <div style="text-align:center;">
-              <p style="margin:5px 0;"><strong>${err.message || 'Transaction failed'}</strong></p>
-              <p style="color:#9bb5d8; font-size:0.8rem;">Check M-Pesa balance & try again</p>
+            <div style="text-align: center;">
+              <div class="error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <p><strong>${error.message || 'Payment processing failed'}</strong></p>
+              <p style="color: #9bb5d8; margin-top: 10px;">
+                Please check your phone number and try again
+              </p>
             </div>
           `,
           confirmButtonText: 'Try Again',
-          confirmButtonColor: '#FF9F1C',
-          showCancelButton: true,
-          cancelButtonText: 'Cancel',
-          cancelButtonColor: '#3A4A62'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            showContactModal(selectedTier, selectedAmount, selectedFee);
-          }
+          confirmButtonColor: '#FF9F1C'
         });
-      } finally {
+        
         isProcessing = false;
       }
     }
 
-    // attach listeners to all buy buttons
+    // Add click handlers to buy buttons
     document.querySelectorAll('.buy-btn').forEach(btn => {
-      btn.addEventListener('click', e => {
+      btn.addEventListener('click', (e) => {
         e.preventDefault();
         const card = e.target.closest('.bot-card');
         if (!card) return;
         
+        // Add haptic feedback simulation
         btn.style.transform = 'scale(0.95)';
         setTimeout(() => btn.style.transform = '', 100);
         
         const tier = card.dataset.tier;
         const amount = parseInt(card.dataset.amount);
         const fee = parseInt(card.dataset.fee);
+        
         showContactModal(tier, amount, fee);
       });
     });
 
-    // prevent zoom on double-tap
-    let lastTouch = 0;
-    document.addEventListener('touchend', e => {
-      const now = Date.now();
-      if (now - lastTouch < 300) e.preventDefault();
-      lastTouch = now;
+    // Prevent double-tap zoom on mobile
+    document.addEventListener('touchstart', function(e) {
+      if (e.touches.length > 1) e.preventDefault();
     }, { passive: false });
+
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(e) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) e.preventDefault();
+      lastTouchEnd = now;
+    }, false);
   })();
 </script>
 </body>
