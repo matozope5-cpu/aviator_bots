@@ -223,6 +223,7 @@
       padding: 16px 18px;
       transition: all 0.25s;
       box-shadow: 0 6px 0 rgba(0,0,0,0.3);
+      position: relative;
     }
 
     .bot-card:hover {
@@ -277,11 +278,11 @@
 
     .price-section {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
       border-top: 1px dashed #2E3E55;
-      padding-top: 10px;
-      margin-top: 2px;
+      padding-top: 12px;
+      margin-top: 4px;
     }
 
     .price-ksh {
@@ -290,28 +291,35 @@
       color: #FF9F1C;
     }
 
+    /* REDESIGNED "GET NOW" BUTTON - sophisticated contrast, same size */
     .buy-btn {
-      background: #FF9F1C;
-      border: none;
+      background: transparent;
+      border: 2px solid #4A9EFF;  /* Cool blue that complements orange */
       padding: 8px 18px;
-      border-radius: 30px;
+      border-radius: 40px;
       font-weight: 600;
       font-size: 0.85rem;
-      color: #0B0F17;
+      letter-spacing: 0.5px;
+      color: #4A9EFF;
       cursor: pointer;
-      transition: 0.15s;
-      box-shadow: 0 3px 0 #b15f00;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      background: rgba(74, 158, 255, 0.05);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
     }
 
     .buy-btn:hover {
-      background: #ffb347;
-      box-shadow: 0 3px 0 #b15f00, 0 0 10px #FF9F1C;
-      transform: scale(1.02);
+      background: #4A9EFF;
+      color: #0B0F17;
+      border-color: #4A9EFF;
+      box-shadow: 0 4px 15px rgba(74, 158, 255, 0.4);
+      transform: translateY(-1px);
     }
 
     .buy-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 1px 0 #b15f00;
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(74, 158, 255, 0.3);
     }
 
     /* ----- FOOTER - compact ----- */
@@ -324,7 +332,7 @@
       padding-top: 16px;
     }
 
-    /* ----- SWEET ALERT CUSTOM - optimized for mobile ----- */
+    /* ----- SWEET ALERT CUSTOM - ELEGANT PAY NOW BUTTON (no drawable) ----- */
     .swal2-popup {
       background: #131F2F !important;
       color: #edf2f7 !important;
@@ -367,6 +375,11 @@
       height: auto !important;
     }
 
+    .swal2-input:focus {
+      border-color: #FF9F1C !important;
+      box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.2) !important;
+    }
+
     /* Phone input group - matches email width */
     .phone-input-group {
       display: flex;
@@ -378,6 +391,12 @@
       overflow: hidden;
       height: 48px;
       width: 100%;
+      transition: border-color 0.2s;
+    }
+
+    .phone-input-group:focus-within {
+      border-color: #FF9F1C;
+      box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.2);
     }
 
     .phone-prefix {
@@ -400,6 +419,10 @@
       height: 100%;
       color: #fff;
       font-size: 15px;
+    }
+
+    .phone-input-group input:focus { 
+      outline: none; 
     }
 
     /* Compact info panels */
@@ -495,7 +518,61 @@
       font-size: 1rem;
     }
 
-    /* Floating animation - more subtle on mobile */
+    /* ELEGANT PAY NOW BUTTON - completely redesigned, no drawable */
+    .swal2-confirm {
+      background: linear-gradient(135deg, #FF9F1C, #f08b0c) !important;
+      color: #0B0F17 !important;
+      border: none !important;
+      border-radius: 40px !important;
+      font-weight: 600 !important;
+      font-size: 1rem !important;
+      padding: 12px 28px !important;
+      box-shadow: 0 4px 0 #b15f00, 0 8px 20px rgba(255, 159, 28, 0.3) !important;
+      transition: all 0.2s ease !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .swal2-confirm:hover {
+      background: linear-gradient(135deg, #ffb347, #ff9f1c) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 0 #b15f00, 0 12px 25px rgba(255, 159, 28, 0.4) !important;
+    }
+
+    .swal2-confirm:active {
+      transform: translateY(2px) !important;
+      box-shadow: 0 2px 0 #b15f00, 0 8px 20px rgba(255, 159, 28, 0.3) !important;
+    }
+
+    /* Cancel button styling */
+    .swal2-cancel {
+      background: transparent !important;
+      color: #aac5e5 !important;
+      border: 1px solid #3A4A62 !important;
+      border-radius: 40px !important;
+      font-weight: 500 !important;
+      padding: 12px 28px !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .swal2-cancel:hover {
+      border-color: #FF9F1C !important;
+      color: #fff !important;
+      background: rgba(255, 159, 28, 0.1) !important;
+    }
+
+    /* Remove any pseudo-element drawables */
+    .swal2-confirm::after,
+    .swal2-confirm::before,
+    .buy-btn::after,
+    .buy-btn::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    /* Floating animation - subtle */
     @keyframes float {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-2px); }
@@ -508,12 +585,6 @@
 
     .bot-card:nth-child(even) {
       animation: float 5s ease-in-out infinite;
-    }
-
-    /* Button press effect */
-    .buy-btn {
-      position: relative;
-      overflow: hidden;
     }
 
     /* Responsive adjustments for very small screens */
@@ -589,7 +660,7 @@
     </div>
   </div>
 
-  <!-- 5 BOT CARDS – compact for mobile -->
+  <!-- 5 BOT CARDS – with sophisticated GET NOW buttons (same size, distinct color) -->
   <div class="bot-cards">
 
     <!-- BOT 1 – rookie -->
@@ -605,7 +676,7 @@
       </div>
       <div class="price-section">
         <div><span class="price-ksh">KES 150</span></div>
-        <button class="buy-btn">Select</button>
+        <button class="buy-btn">GET NOW</button>
       </div>
     </div>
 
@@ -623,7 +694,7 @@
       </div>
       <div class="price-section">
         <div><span class="price-ksh">KES 250</span></div>
-        <button class="buy-btn">Select</button>
+        <button class="buy-btn">GET NOW</button>
       </div>
     </div>
 
@@ -641,7 +712,7 @@
       </div>
       <div class="price-section">
         <div><span class="price-ksh">KES 325</span></div>
-        <button class="buy-btn">Select</button>
+        <button class="buy-btn">GET NOW</button>
       </div>
     </div>
 
@@ -659,7 +730,7 @@
       </div>
       <div class="price-section">
         <div><span class="price-ksh">KES 400</span></div>
-        <button class="buy-btn">Select</button>
+        <button class="buy-btn">GET NOW</button>
       </div>
     </div>
 
@@ -677,7 +748,7 @@
       </div>
       <div class="price-section">
         <div><span class="price-ksh">KES 470</span></div>
-        <button class="buy-btn">Select</button>
+        <button class="buy-btn">GET NOW</button>
       </div>
     </div>
   </div>
@@ -831,7 +902,7 @@
           </div>
         `,
         showCancelButton: true,
-        confirmButtonText: '💳 Pay Now',
+        confirmButtonText: '💳 PAY NOW',
         cancelButtonText: 'Cancel',
         confirmButtonColor: '#FF9F1C',
         cancelButtonColor: '#3A4A62',
